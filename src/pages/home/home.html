@@ -7,8 +7,24 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <button ion-button fab (click)="GeocoderWithCoords()"> My Location</button>
+  <div *ngIf="IsLocation">
+    <ion-item>
+      <p text-center>{{Location.countryName}}</p>
+    </ion-item>
+    <ion-item>
+      <p text-center>{{Location.subLocality}}</p>
+    </ion-item>
+    <ion-item>
+      <p text-center>{{Location.thoroughfare}}</p>
+    </ion-item>
+    <ion-item>
+      <p text-center>{{Location.subThoroughfare}}</p>
+    </ion-item>
+  </div>
+
+
+  <agm-map *ngIf="IsLocation" [latitude]="lat" [longitude]="log">
+    <agm-marker [latitude]="lat" [longitude]="log"></agm-marker>
+  </agm-map>
 </ion-content>
